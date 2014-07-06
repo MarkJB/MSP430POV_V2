@@ -1,0 +1,54 @@
+PCBNEW-LibModule-V1  06/07/2014 12:30:26
+# encoding utf-8
+Units mm
+$INDEX
+LED_Rect
+drillhole
+$EndINDEX
+$MODULE LED_Rect
+Po 0 0 0 15 53B93093 00000000 ~~
+Li LED_Rect
+Sc 0
+AR /53B88192
+Op 0 0 0
+T0 -0.127 1.905 1 1 0 0.15 N V 21 N "D1"
+T1 2.286 1.905 1 1 0 0.15 N V 21 N "LED"
+DS -0.889 1.016 3.429 1.016 0.2 21
+DS 3.429 -0.889 -0.889 -0.889 0.2 21
+DS 3.429 1.016 3.429 -0.889 0.2 21
+DS -0.889 -0.889 -0.889 1.016 0.2 21
+$PAD
+Sh "1" C 1.5 1.5 0 0 0
+Dr 0.6 0 0
+At STD N 00E0FFFF
+Ne 2 "N-0000029"
+Po 0 0
+$EndPAD
+$PAD
+Sh "2" C 1.5 1.5 0 0 0
+Dr 0.6 0 0
+At STD N 00E0FFFF
+Ne 1 "N-0000017"
+Po 2.54 0
+$EndPAD
+$EndMODULE LED_Rect
+$MODULE drillhole
+Po 0 0 0 15 53B93336 00000000 ~~
+Li drillhole
+Cd module 1 pin (ou trou mecanique de percage)
+Kw DEV
+Sc 0
+AR 1pin
+Op 0 0 0
+T0 0 -3.048 1.016 1.016 0 0.254 N V 21 N "1PIN"
+T1 0 2.794 1.016 1.016 0 0.254 N I 21 N "P***"
+DC 0 0 0 -1.8 0.381 21
+$PAD
+Sh "1" C 2.5 2.5 0 0 0
+Dr 2 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 0
+$EndPAD
+$EndMODULE drillhole
+$EndLIBRARY
