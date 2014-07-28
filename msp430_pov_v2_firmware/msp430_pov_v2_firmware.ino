@@ -25,6 +25,11 @@ void setup()
 {
   // put your setup code here, to run once:
 
+  //Port2 P2.6 & P2.7 aren't working on surface mount version
+  //Trying to set pins as output here.
+  
+  P2SEL = B00000000;
+
   //enable pins out by port register
   // High = 1 = write
   P2DIR = B11111111;
