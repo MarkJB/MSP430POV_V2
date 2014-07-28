@@ -30,3 +30,5 @@ Restart Energia - check for extra board (Tools -> Boards)
 Removed the 10uF cap from the thru-hole board and it works fine @ 1MHz. Don't think I need to alter the PCB to include it. Will need to see how well the boards perform as the battery voltage drops.
 
 TODO: Add the abililty to load messages via the com port. Need to look at how to save messages into flash so they are persistant. Currently firmware will need to be loaded onto the chip using a suitable TI Launchpad as a programmer.
+
+TODO: Add infill on PCBs for next batch.
