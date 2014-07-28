@@ -26,8 +26,8 @@ void setup()
   // put your setup code here, to run once:
 
   //Port2 P2.6 & P2.7 aren't working on surface mount version
-  //Trying to set pins as output here.
-  
+  //by default they are set as xin/xout to use external xtal
+  //Set all port 2 pins as input/output here.
   P2SEL = B00000000;
 
   //enable pins out by port register

@@ -25,4 +25,8 @@ lpmsp430g2553_1.upload.maximum_ram_size=512
 
 Restart Energia - check for extra board (Tools -> Boards)
 
+28/07/2014 Received the first batch of SMT (surface mount) PCBs. Assembled and tested board without 10uF cap. Worked ok but two LEDs were out (P2.6 & P2.7). Checked LEDs and chip. Replaced chip. Same problem. Discovered that on blank chips the shared pins were in external xtal mode (P2.6 & P2.7 were set to xin and xout). Cleared the P2SEL register (setting all bits to zero) sets all pins to be port 2 input/outputs. 
+
+Removed the 10uF cap from the thru-hole board and it works fine @ 1MHz. Don't think I need to alter the PCB to include it. Will need to see how well the boards perform as the battery voltage drops.
+
 TODO: Add the abililty to load messages via the com port. Need to look at how to save messages into flash so they are persistant. Currently firmware will need to be loaded onto the chip using a suitable TI Launchpad as a programmer.
