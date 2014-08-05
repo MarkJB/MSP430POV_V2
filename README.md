@@ -33,6 +33,6 @@ TODO: Add the abililty to load messages via the com port. Need to look at how to
 
 Added 'serial_port' branch to test serial coms for uploading message data. So far I am able to send serial data from a PC to the boards (via the launch pad serial port - this should work just as well with a standalone USB to serial addaptor), and display that data on the leds. Sending 4 space chars in a row will reset the displayed message. Need to look at max size of message. Flash limitations may also apply but it more likely that the sweep or arc of movement needed to display a message is too short to allow long strings (unless mounted on a bike wheel).
 
-Reseaching the MspFlash library for writing data to flash (program) memory. https://github.com/energia/Energia/blob/master/hardware/msp430/libraries/MspFlash/examples/flash_readwrite/flash_readwrite.ino
+Researching the MspFlash library for writing data to flash (program) memory. https://github.com/energia/Energia/blob/master/hardware/msp430/libraries/MspFlash/examples/flash_readwrite/flash_readwrite.ino
 
 TODO: Add infill on PCBs for next batch.
