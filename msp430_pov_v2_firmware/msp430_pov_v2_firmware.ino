@@ -33,6 +33,10 @@ void setup()
   //enable pins out by port register
   // High = 1 = write
   P2DIR = B11111111;
+  
+  //Initalise output pins (they will hold a random value after a restart)
+  //Set digital pins low
+  P2OUT = B0;
 }
 
 void loop()
@@ -45,9 +49,7 @@ void loop()
   //Define a pause value to hold the led pattern for a bit (value is in ms)
   int longPauseValue = 1000;
   
-  //Initalise output pins (they will hold a random value after a restart)
-  //Set digital pins low
-  P2OUT = B0;
+
 
   //Write the message array to the LEDs
   for(int x=0; x<=sizeof(messageArray1); x++)
