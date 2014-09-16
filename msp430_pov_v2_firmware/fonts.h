@@ -2,6 +2,8 @@
 // ascii 7x5 side-feeding characters for led modules
 // addapted from http://www.sxlist.com/TECHREF/datafile/charset/8x6.htm
 
+//Offset = 32
+
 const int font[][5] = {
 		{0x00,0x00,0x00,0x00,0x00},   //   0x20 32
 		{0x00,0x00,0x6f,0x00,0x00},   // ! 0x21 33

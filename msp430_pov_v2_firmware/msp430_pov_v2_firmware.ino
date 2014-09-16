@@ -4,10 +4,12 @@
 
 // Testing flash memory erase/write/read
 
-//TODO: Upload data to display via serial port - sort of working
+//TODO: Upload data to display via serial port - working
 
-//TODO: Save uploaded data to persistant storage
-//TODO: Read data from persistant storage
+//TODO: Save uploaded data to persistant storage - working
+//TODO: Read data from persistant storage - working
+
+//TODO: Tidy up code and comment out debug print statements (maybe write a debug function or check if one alreay exists)
 
 //Include lib to allow access to flash memory
 #include "MspFlash.h"
@@ -36,6 +38,9 @@ B00000000
 char messageArray2[64];
 int messageArray2Length = 0;
 
+//Offset for font table - ASCII val - offset gives position in array that matches the ASCII value
+int fontTableIndexOffset = 32;
+
 void setup()
 {
   //Enable serial comms
@@ -53,8 +58,19 @@ void setup()
   //Initalise output pins (they will hold a random value after a restart)
   //Set digital pins low
   P2OUT = B0;
-  
+
+  /*for(int x=0; x<5; x++)
+  {
+    Serial.print("Startup delay loop - ");
+    Serial.println(x);
+    delay(1000);
+  }*/
+
+  //Echo information at startup
+  Serial.println("POV Rev 002 - Test firmware v0.01 - github.com/markjb/msp430pov_v2 - CCNC 2014");
+  Serial.println("Commands (r)ead, (w)rite and (e)rase");
   //Read in the message stored in flash
+  //Serial.println("Call doRead() to read flash memory");
   doRead();
 }
 
@@ -66,21 +82,10 @@ void loop()
   int shortPauseValue = 3;
   
   //Write the message array to the LEDs
-  for(int x=0; x<messageArray2Length; x++)
-  {
-    //Get the char value of the current char in the message
-    char charToDisplay = messageArray2[x];
-    byte byteToDisplay = byte(charToDisplay);
-    //Serial.print("Current char has value :");
-    //Serial.println(byteToDisplay);   
-    for(int y=0; y<6; y++)
-    {
-       //Get the byte to display from the fonts table and display it here.
-       Serial.print("About to fiddle with the leds");
-       //P2OUT = messageArray[x];
-       P2OUT = font[byteToDisplay][y];
-       delay(shortPauseValue);
-       if ( Serial.available() )
+  //Serial.println("About to enter loop");
+  //delay(1000);
+  
+     /*    if ( Serial.available() )
        {
           switch ( Serial.read() )
           { 
@@ -91,50 +96,179 @@ void loop()
             case 13: break;
             default: doHelp();
           }
-       } 
-     }
+       }*/ 
+  
+  //If there is no message data read from flash (i.e messageArray2Length = 0) then display
+  // the default pacman ghost otherwise display the message
+  if(messageArray2Length>0)
+  {
+    //display messageArray2
+  
+    for(int x=0; x<messageArray2Length; x++)
+    {
+      //Serial.println("In x part of loop");
+      //delay(1000);
+      //Get the char value of the current char in the message
+      char charToDisplay = messageArray2[x];
+      byte byteToDisplay = byte(charToDisplay);
+      byteToDisplay = byteToDisplay - fontTableIndexOffset;
+      //Serial.print("Current char has value :");
+      //Serial.println(byteToDisplay);   
+      
+      //Write a blank line before any char to give space between letters
+      P2OUT = 0;
+      delay(shortPauseValue);
+      
+      for(int y=0; y<5; y++)
+      {
+         //Serial.println("In y part of loop");
+         //delay(1000);
+         
+         //Put this in a function
+         /*
+         if ( Serial.available() )
+         {
+            switch ( Serial.read() )
+            { 
+              case 'e': doErase(); break;  
+              case 'r': doRead(); break; 
+              case 'w': doWrite(); break; 
+              case 10:
+              case 13: break;
+              default: doHelp();
+            }
+         }*/
+         
+         pollForSerialCommand();
+                  
+         //Get the byte to display from the fonts table and display it here.
+         //Serial.print("About to fiddle with the leds");
+         //P2OUT = messageArray[x];
+         //Serial.print("Current char has value :");
+         //Serial.println(byteToDisplay);
+         
+         //Serial.print("Getting font data for font[");
+         //Serial.print(byteToDisplay);
+         //Serial.print("][");
+         //Serial.print(y);
+         //Serial.println("] from font table.");
+         
+         P2OUT = font[byteToDisplay][y];
+         delay(shortPauseValue);
+       
+         /*if ( Serial.available() )
+         {
+            switch ( Serial.read() )
+            { 
+              case 'e': doErase(); break;  
+              case 'r': doRead(); break; 
+              case 'w': doWrite(); break; 
+              case 10:
+              case 13: break;
+              default: doHelp();
+            }
+         }*/ 
+       }
+    }
   }
+  else
+  {
+    //display pacman ghost
+    //Write the message array to the LEDs
+    for(int x=0; x<=sizeof(messageArray1); x++)
+    {
+      P2OUT = messageArray1[x];
+      delay(shortPauseValue);
+      
+      //Put this in a function
+      /*if ( Serial.available() )
+      {
+        switch ( Serial.read() )
+        { 
+          case 'e': doErase(); break;  
+          case 'r': doRead(); break; 
+          case 'w': doWrite(); break; 
+          case 10:
+          case 13: break;
+          default: doHelp();
+        }
+      }*/
+      pollForSerialCommand(); 
+    }
+  }
+}
+
+void pollForSerialCommand()
+{
+  //
+  //Put this in a function
+  if ( Serial.available() )
+  {
+    switch ( Serial.read() )
+    { 
+      case 'e': doErase(); break;  
+      case 'r': doRead(); break; 
+      case 'w': doWrite(); break; 
+      case 10:
+      case 13: break;
+      default: doHelp();
+    }
+  } 
 }
 
 void doRead()
 {
   unsigned char p = 0;
   int i=0;
-  //Serial.println("Read:");
-  //Serial.print("Length currently stored in messageArray2Length = ");
-  //Serial.println(messageArray2Length);
+  Serial.println("Read:");
+  Serial.print("Length currently stored in messageArray2Length = ");
+  Serial.println(messageArray2Length);
   
   do
   {
     Flash.read(flash+i, &p, 1);
-    //Serial.write(p);
-    //Serial.print(":");    
-    //Serial.println(p);
+    Serial.write(p);
+    Serial.print(":");    
+    Serial.println(p);
     messageArray2Length = i;
     messageArray2[i]=p;
   } while ( p && byte(p) < 255 && (i++ < 64) );
-  //Serial.println("End of message in flash segment");
-  //Serial.print("Length of message read from flash = ");
-  //Serial.println(messageArray2Length);
-  //Serial.print("Length now stored in messageArray2Length = ");
-  //Serial.println(messageArray2Length);
+  
+  Serial.println("End of message in flash segment");
+  Serial.print("Length of message read from flash = ");
+  Serial.println(messageArray2Length);
+  Serial.print("Length now stored in messageArray2Length = ");
+  Serial.println(messageArray2Length);
   
   //echo back the message now stored in messageArray2 (read from flash)
-  /*Serial.println("messageArray2[] now contains:");
+  Serial.println("messageArray2[] now contains:");
   for(int x=0; x<messageArray2Length; x++)
   {
     Serial.print(messageArray2[x]);
   }
   Serial.println("");
-  */
+
 }
+
 
 
 void doErase()
 {
- //Serial.println("Erase"); 
- Flash.erase(flash); 
- //Serial.println("Done."); 
+   Serial.println("Erase flash"); 
+   Flash.erase(flash); 
+   Serial.println("Done."); 
+ 
+   Serial.println("Erase ram"); 
+   //init the array
+   //Blank the current message in ram so we don't accidentally store random chars in flash
+   for(int x=0; x<=sizeof(messageArray2); x++)
+   {
+     messageArray2[x]=' ';
+   }
+   Serial.println("Done.");
+   Serial.println("Verifying");
+   doRead();
+   Serial.println("Done.");
 }
 
 void doWrite()
@@ -142,17 +276,11 @@ void doWrite()
   //Store a message read in from the serial port or from flash memory at power on
   //char messageArray2[64];
   
-  //init the array
-  //Blank the current message in ram so we don't accidentally store random chars in flash
-  for(int x=0; x<=sizeof(messageArray2); x++)
-  {
-    messageArray2[x]=' ';
-  }
-  //Serial.println("Erasing flash...");
+  //Erase flash before a write (can't write a 1 to flash memory, if it is set to zero it can't be set back unless you erase it)
   doErase();
   
   Serial.println("Write");
-  Serial.println("Enter message to write to flash: (Will timeout in 30 secs)");
+  Serial.println("Enter message to write to flash. Terminate string with a '.' (Message entry will timeout in 30 secs)");
   int termChar = 10;
   
   Serial.flush();
@@ -172,9 +300,13 @@ void doWrite()
   Serial.println("");
   */
   
-  //Serial.println("Writting to flash");
+  Serial.println("Writting to flash");
   Flash.write(flash, (unsigned char*) messageArray2 , messageArray2Length); 
-  //Serial.println("Done.");
+  Serial.println("Done.");
+  
+  Serial.println("Reading back message from flash to populate variables - doRead() called from doWrite()");
+  doRead();
+  Serial.println("Done reading back, exiting doWrite()");
 }
 
 void doHelp()
