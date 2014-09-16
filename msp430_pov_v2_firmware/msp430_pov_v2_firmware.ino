@@ -2,10 +2,6 @@
 //
 //Using the Energia IDE
 
-//TODO: Upload data to display via serial port
-//TODO: Save uploaded data to persistant storage
-//TODO: Read data from persistant storage
-
 //Byte arry
 
 //PACMAN style ghost
@@ -23,10 +19,9 @@ B00000000
 
 void setup()
 {
-  // put your setup code here, to run once:
-
   //Port2 P2.6 & P2.7 aren't working on surface mount version
   //by default they are set as xin/xout to use external xtal
+
   //Set all port 2 pins as input/output here.
   P2SEL = B00000000;
 
@@ -37,20 +32,15 @@ void setup()
   //Initalise output pins (they will hold a random value after a restart)
   //Set digital pins low
   P2OUT = B0;
+  
+  Serial.println("POV Rev 002 - Test firmware v0.01 - github.com/markjb/msp430pov_v2 - CCNC 2014"
 }
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
-
   //Define a pause value for use between led changes (value is in ms)
   int shortPauseValue = 3;
   
-  //Define a pause value to hold the led pattern for a bit (value is in ms)
-  int longPauseValue = 1000;
-  
-
-
   //Write the message array to the LEDs
   for(int x=0; x<=sizeof(messageArray1); x++)
   {
