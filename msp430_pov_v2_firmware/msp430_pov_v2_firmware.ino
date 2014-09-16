@@ -33,7 +33,7 @@ void setup()
   //Set digital pins low
   P2OUT = B0;
   
-  Serial.println("POV Rev 002 - Test firmware v0.01 - github.com/markjb/msp430pov_v2 - CCNC 2014"
+  Serial.println("POV Rev 002 - Test firmware v0.01 - github.com/markjb/msp430pov_v2 - CCNC 2014");
 }
 
 void loop()
