@@ -1,4 +1,4 @@
-//MSP430 POV Rev2 firmware v1.00 - CCNC 2014
+//MSP430 POV HW Rev2 firmware v1.00 - CCNC 2014
 //
 //Using the Energia IDE
 
