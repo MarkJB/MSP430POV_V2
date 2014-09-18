@@ -1,3 +1,7 @@
+//Need to write my own version of this as this may be subject to copyright
+//Any copyright or license implied for the rest of the code may not apply
+//to this file.
+
 // defining the alphabet
 // ascii 7x5 side-feeding characters for led modules
 // addapted from http://www.sxlist.com/TECHREF/datafile/charset/8x6.htm
