@@ -66,7 +66,7 @@ void setup()
   DEBUG_SLOWDOWN_2;
 
   //Echo useful information at startup
-  Serial.println("POV Rev 002 - Test firmware v1.00 - github.com/markjb/msp430pov_v2 - CCNC 2014");
+  Serial.println("POV HW Rev 002 - firmware v1.00 - github.com/markjb/msp430pov_v2 - CCNC 2014");
   Serial.print("CPU Frequency = ");
   Serial.print((F_CPU/1000000));
   Serial.println("MHz");
