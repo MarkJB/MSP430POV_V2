@@ -39,13 +39,13 @@ If no message exists, the default pacman style ghost is displayed.
 
 To upload ASCII messages, connect a serial terminal and power on and you will see info and a menu:
 
->POV HW Rev 002 - firmware v1.00 - github.com/markjb/msp430pov_v2 - CCNC 2014
->CPU Frequency = 1MHz
->----------------------
->Reading flash.........
->Reading flash.....Done
->----------------------
->Commands (r)ead, (w)rite and (e)rase
+`POV HW Rev 002 - firmware v1.00 - github.com/markjb/msp430pov_v2 - CCNC 2014
+`CPU Frequency = 1MHz
+`----------------------
+`Reading flash.........
+`Reading flash.....Done
+`----------------------
+`Commands (r)ead, (w)rite and (e)rase
 
 Read  - will read the current content of the flash memory.
 Erase - will erase the flash memory.
@@ -53,36 +53,36 @@ Write - will erase, write and read the flash memory.
 
 You only need to use write as this will first call erase, then read, then write the message, then call read again.
 
->w
->----------------------
->Erasing flash.........
->Erasing flash.....Done
->----------------------
->Reading flash.........
->Reading flash.....Done
->----------------------
->Commands (r)ead, (w)rite and (e)rase
->----------------------
->Write to flash........
->Enter message to write to flash. Terminate string with a '.' (Message entry will timeout in 30 secs)
+`w
+`----------------------
+`Erasing flash.........
+`Erasing flash.....Done
+`----------------------
+`Reading flash.........
+`Reading flash.....Done
+`----------------------
+`Commands (r)ead, (w)rite and (e)rase
+`----------------------
+`Write to flash........
+`Enter message to write to flash. Terminate string with a '.' (Message entry will timeout in 30 secs)
 
 Type a message using the basic ASCII character set, end the message with a full stop (e.g. '.') and press return.
 
->Hello World!.
-Writing flash.........
-Writing flash.....Done
-----------------------
-Reading flash.........
-Reading flash.....Done
-----------------------
-Commands (r)ead, (w)rite and (e)rase
+`Hello World!.
+`Writing flash.........
+`Writing flash.....Done
+`----------------------
+`Reading flash.........
+`Reading flash.....Done
+`----------------------
+`Commands (r)ead, (w)rite and (e)rase
 
 Extra debug output can be enabled by uncommenting the #define DEBUG lines in debug.h.
 
 e.g. look for these lines and remove the //
-//#define DEBUG1
-//#define DEBUG2
-//#define DEBUG_SLOWDOWN
+`//#define DEBUG1
+`//#define DEBUG2
+`//#define DEBUG_SLOWDOWN
 
 DEBUG1 gives some extra info but should not interfere with normal operation.
 DEBUG2 gives a lot more info and will slow down the led display. You will 
