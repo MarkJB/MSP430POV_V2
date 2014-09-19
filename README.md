@@ -14,7 +14,7 @@ Sorry - page is a mess - markdown is a PITA
 To add a 1MHz board to Energia:
 
 Add the follow to the boards.txt file in energia/hardware/msp430/boards.txt
-
+```
 ##############################################################
 lpmsp430g2553_1.name=LaunchPad w/ msp430g2553 (1MHz)
 lpmsp430g2553_1.upload.protocol=rf2500
@@ -24,7 +24,7 @@ lpmsp430g2553_1.build.f_cpu=1000000L
 lpmsp430g2553_1.build.core=msp430
 lpmsp430g2553_1.build.variant=launchpad
 lpmsp430g2553_1.upload.maximum_ram_size=512
-
+```
 Restart Energia - check for extra board (Tools -> Boards)
 
 28/07/2014 Received the first batch of SMT (surface mount) PCBs. Assembled and tested board without 10uF cap. Worked ok but two LEDs were out (P2.6 & P2.7). Checked LEDs and chip. Replaced chip. Same problem. Discovered that on blank chips the shared pins were in external xtal mode (P2.6 & P2.7 were set to xin and xout). Cleared the P2SEL register (setting all bits to zero) sets all pins to be port 2 input/outputs. 
@@ -54,7 +54,7 @@ Erase - will erase the flash memory.
 Write - will erase, write and read the flash memory.
 
 You only need to use write as this will first call erase, then read, then write the message, then call read again.
-
+```
 w
 ----------------------
 Erasing flash.........
@@ -67,9 +67,9 @@ Commands (r)ead, (w)rite and (e)rase
 ----------------------
 Write to flash........
 Enter message to write to flash. Terminate string with a '.' (Message entry will timeout in 30 secs)
-
+```
 Type a message using the basic ASCII character set, end the message with a full stop (e.g. '.') and press return.
-
+```
 Hello World!.
 Writing flash.........
 Writing flash.....Done
@@ -78,14 +78,15 @@ Reading flash.........
 Reading flash.....Done
 ----------------------
 Commands (r)ead, (w)rite and (e)rase
-
+```
 Extra debug output can be enabled by uncommenting the #define DEBUG lines in debug.h.
 
 e.g. look for these lines and remove the //
+```
 //#define DEBUG1
 //#define DEBUG2
 //#define DEBUG_SLOWDOWN
-
+```
 DEBUG1 gives some extra info but should not interfere with normal operation.
 DEBUG2 gives a lot more info and will slow down the led display. You will 
 probably need to uncomment DEBUG_SLOWDOWN to add pauses between the debug statements.
