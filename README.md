@@ -5,8 +5,6 @@ Revison 2 of the MSP430 based persistance of vision hardware.
 
 The PCBs for this version are intended to be manufactured professionally.
 
-Sorry - page is a mess - markdown is a PITA
-
 ================================HARDWARE=============================
 
 22/07/2014 Received first batch of thru-hole PCBs. Assembled and tested board. When running on CR2302 works for about 30 seconds before locking up. Tried external 3V battery (2xAA) but exhibited same behaviour. Added 10uF cap. System locks up on CR2303 after about 30 seconds but runs fine on external 3V battery. Reflashed board (via P2 header connected to Launchpad) with current firmware and board set to 1MHz. Board now runs fine on CR2302. Need to determine if 10uF is necessary or if system is stable @ 1MHz without it.
