@@ -88,5 +88,6 @@ e.g. look for these lines and remove the //
 //#define DEBUG_SLOWDOWN
 ```
 DEBUG1 gives some extra info but should not interfere with normal operation.
-DEBUG2 gives a lot more info and will slow down the led display. You will 
-probably need to uncomment DEBUG_SLOWDOWN to add pauses between the debug statements.
+DEBUG2 gives a lot more info and will slow down the led display. 
+You will probably need to uncomment DEBUG_SLOWDOWN to add pauses between the debug statements.
+Note: Debug adds about 2kb to the firmware size
