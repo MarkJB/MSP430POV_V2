@@ -40,7 +40,7 @@ It allows you to upload ASCII chars via serial. These messages are then stored i
 If no message exists, the default pacman style ghost is displayed.
 
 To upload ASCII messages, connect a serial terminal and power on and you will see info and a menu:
-
+```
 POV HW Rev 002 - firmware v1.00 - github.com/markjb/msp430pov_v2 - CCNC 2014
 CPU Frequency = 1MHz
 ----------------------
@@ -48,7 +48,7 @@ Reading flash.........
 Reading flash.....Done
 ----------------------
 Commands (r)ead, (w)rite and (e)rase
-
+```
 Read  - will read the current content of the flash memory.
 Erase - will erase the flash memory.
 Write - will erase, write and read the flash memory.
