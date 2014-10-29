@@ -1,4 +1,4 @@
-// Created from scratch by designing font with the free trial of pixel fonts
+// Created from scratch by designing font with "Pickle" which is a pixel editor.
 // http://www.pickleeditor.com/
 // pickle files included in PoV github
 
