@@ -1,5 +1,7 @@
 // Created from scratch by designing font with "Pickle" which is a pixel editor.
 // http://www.pickleeditor.com/
+// WARNING: I seem to have picked up some adware/spyware, possibly from downloading
+// Pickleeditor - be warned - make sure your AV is uptodate before downloading it!
 // pickle files included in PoV github
 
 // Table of supported Chars
